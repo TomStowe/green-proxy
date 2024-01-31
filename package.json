@@ -1,28 +1,25 @@
 {
-  "name": "greenlock-proxy",
-  "version": "0.2.0",
-  "description": "HTTPS proxy wrapper for greenlock",
-  "main": "index.js",
+  "name": "green-proxy",
+  "version": "1.0.0",
+  "description": "HTTPS & WSS proxy provider, based off greenlock-proxy",
   "scripts": {
-    "postversion": "git push && git push --tags"
+    "start": "npm run dev",
+    "dev": "nodemon index.ts --ignore .greenlock.rc --ignore ./greenlock.d",
+    "deploy": "tsc && cp config.json dist/config.json && cp package.json dist/package.json && NODE_ENV=production; pm2 start pm2.prod.json --wait-ready",
+    "redeploy": "tsc && cp config.json dist/config.json && cp package.json dist/package.json NODE_ENV=production; pm2 reload pm2.prod.json",
+    "status": "NODE_ENV=production; pm2 status",
+    "log": "NODE_ENV=production; pm2 logs",
+    "stop": "NODE_ENV=production; pm2 stop pm2.prod.json",
+    "destroy": "NODE_ENV=production; pm2 delete pm2.prod.json"
   },
-  "author": "https://github.com/roslovets",
-  "license": "ISC",
-  "homepage": "https://github.com/Roslovets-Inc/greenlock-proxy#readme",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Roslovets-Inc/greenlock-proxy"
-  },
-  "keywords": [
-    "SSL",
-    "ZeroSSL",
-    "proxy",
-    "Let's Encrypt",
-    "ACME",
-    "greenlock"
-  ],
   "dependencies": {
+    "fs": "^0.0.1-security",
     "greenlock-express": "^4.0.3",
-    "http-proxy": "^1.18.1"
+    "http-proxy": "^1.18.1",
+    "nodemon": "^3.0.3",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.13"
   }
 }

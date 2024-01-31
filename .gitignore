@@ -1,2 +1,15 @@
+# Node modules
 node_modules
+
+# Greenlock data
 greenlock.d
+.greenlockrc
+
+# Config file
+config.json
+
+# Build files
+dist
+
+# Mac Files
+.DS_STORE

@@ -1,0 +1,14 @@
+{
+    "maintainerEmail": "yourEmail@email.com",
+    "staging": true,
+    "sites": [
+        {
+            "domains": ["your-site.com", "www.your-site.com"],
+            "targets": ["http://localhost:81"]
+        },
+        {
+            "domains": ["your-second-site.com", "www.your-second-site.com"],
+            "targets": ["http://localhost:81", "http://localhost:82"]
+        }
+    ]
+}

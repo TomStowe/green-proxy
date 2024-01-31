@@ -1,0 +1,14 @@
+{
+    "apps": [
+        {
+            "name": "green-proxy",
+            "script": "./dist/index.js",
+            "exec_interpreter": "node",
+            "instances": 2,
+            "exec_mode": "cluster",
+            "listen_timeout": 30000,
+            "restart_delay": 10000,
+            "autorestart": true
+        }
+    ]
+}
