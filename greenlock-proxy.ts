@@ -83,9 +83,17 @@ class GreenProxy {
   }
 
   serveFcn(req, res) {
+    let bound = false;
     this.rules.forEach((rule) => {
-      this.bindTarget(req, res, this.proxy, rule.domains, rule.targets);
+      if (bound) {
+        return;
+      }
+      bound = this.bindTarget(req, res, this.proxy, rule.domains, rule.targets);
     });
+
+    if (!bound) {
+      console.log(`Unexpected connection to host: ${req.headers.host}`);
+    }
   }
 
   bindTarget(req, res, proxy, domains, targets) {
@@ -95,7 +103,9 @@ class GreenProxy {
       proxy.web(req, res, {
         target: targets[i],
       });
+      return true;
     }
+    return false;
   }
 }
 
